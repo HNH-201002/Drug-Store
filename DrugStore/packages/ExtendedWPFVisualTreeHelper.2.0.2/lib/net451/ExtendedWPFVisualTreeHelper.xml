@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExtendedWPFVisualTreeHelper</name>
+    </assembly>
+    <members>
+        <member name="T:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders">
+            <summary>
+            Provides a set of helpers to navigate a visual tree and either find 
+            a specific child or parent of a dependency object.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindChild``1(System.Windows.DependencyObject,System.String,System.Boolean)">
+            <summary>
+            Finds a child of in the visual tree using its type and (optionally) its name and with
+            the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while exploring the visual tree.
+            </summary>
+            <typeparam name="T">The type of the queried item.</typeparam>
+            <param name="node">The node where to start looking from.</param>
+            <param name="name">Optional name or regex that matches name of the child to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>A matching child, or default if none existing.</returns>
+            <remarks>Adapted from https://stackoverflow.com/questions/636383/how-can-i-find-wpf-controls-by-name-or-type. </remarks>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindChildByType(System.Windows.DependencyObject,System.Type,System.String,System.Boolean)">
+            <summary>
+            Finds a child of in the visual tree using its type and (optionally) its name and with
+            the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while exploring the visual tree.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="type">Type of the child to find.</param>
+            <param name="name">Optional name or regex that matches name of the child to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>A matching child, or null if none existing.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindDirectChild``1(System.Windows.DependencyObject,System.String,System.Boolean)">
+            <summary>
+            Finds the first occurence of a typed child in the lineage of a <see cref="T:System.Windows.DependencyObject"/> node 
+            with optional name filtering and with the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects 
+            while exploring the visual tree.
+            Direct as it only goes through the first child of visual elements, contrary to <see cref="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindChild``1(System.Windows.DependencyObject,System.String,System.Boolean)"/> which looks 
+            searches any children of a node to find the first matching result.
+            </summary>
+            <typeparam name="T">The type of the child to find.</typeparam>
+            <param name="node">The node where to start looking from.</param>
+            <param name="name">Optional name or regex that matches name of the child to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>A matching child, or default if none existing in the direct path.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindDirectChildByType(System.Windows.DependencyObject,System.Type,System.String,System.Boolean)">
+            <summary>
+            Finds the first occurence of a typed child in the lineage of a <see cref="T:System.Windows.DependencyObject"/> node 
+            with optional name filtering and with the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects 
+            while exploring the visual tree.
+            Direct as it only goes through the first child of visual elements, contrary to <see cref="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindChild``1(System.Windows.DependencyObject,System.String,System.Boolean)"/> which looks 
+            searches any children of a node to find the first matching result.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="type">Type of the child to find.</param>
+            <param name="name">Optional name or regex that matches name of the child to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>A matching child, or null if none existing in the direct path.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindAllChildren``1(System.Windows.DependencyObject,System.String,System.Boolean)">
+            <summary>
+            Gets the filtered-by-type complete lineage of a given dependency object with 
+            the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while walking down the visual tree.
+            </summary>
+            <typeparam name="T">The type of the children to find.</typeparam>
+            <param name="node">The node where to start looking from.</param>
+            <param name="name">An optional name or regex pattern to be used for filtering during search.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>All found children elements that match method type.</returns>
+            <remarks>Inspired from: https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.media.visualtreehelper 
+            and https://stackoverflow.com/questions/10279092/how-to-get-children-of-a-wpf-container-by-type. </remarks>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindAllChildrenByType(System.Windows.DependencyObject,System.Type,System.String,System.Boolean)">
+            <summary>
+            Gets the filtered-by-type complete lineage of a given dependency object with 
+            the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while walking down the visual tree.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="type">Type of the child to find.</param>
+            <param name="name">An optional name or regex pattern to be used for filtering during search.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>All found children elements that match passed type.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindParent``1(System.Windows.DependencyObject,System.String,System.Boolean)">
+            <summary>
+            Finds a parent that matches static type and (optionally) the passed name 
+            with the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while walking up the visual tree.
+            </summary>
+            <typeparam name="T">Type of the object to find.</typeparam>
+            <param name="node">The node where to start looking from.</param>
+            <param name="name">Optional name or regex that matches name of the parent to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>The matching parent, or null if none.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindParentByType(System.Windows.DependencyObject,System.Type,System.String,System.Boolean)">
+            <summary>
+            Finds a parent that matches passed target (and dynamically defined) type and (optionally) a passed name
+            with the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while walking up the visual tree.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="type">The explicit type the parent should have.</param>
+            <param name="name">Optional name or regex that matches name of the parent to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>The matching parent, or null if none.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.FindParentByLevel(System.Windows.DependencyObject,System.Int32,System.Boolean)">
+            <summary>
+            Return a parent at a given ancestry level with the ability to travel through 
+            <see cref="T:System.Windows.ContentElement"/> objects while walking up the visual tree.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="level">The ancestry level the parent is at regarding to passed node.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>The parent at given ancestry level, or null if none found at that level.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.GetParentExtended(System.Windows.DependencyObject)">
+            <summary>
+            Alternative to WPF <see cref="M:System.Windows.Media.VisualTreeHelper.GetParent(System.Windows.DependencyObject)"/> method, 
+            which also supports navigation through <see cref="T:System.Windows.ContentElement"/> objects that
+            are not strictly speaking in the visual tree.</summary>
+            <param name="node">The item to be processed.</param>
+            <returns>The submitted item's parent, if available, null otherwise.</returns>
+            <remarks>Adapted from http://www.hardcodet.net/2008/02/find-wpf-parent. </remarks>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFinders.CheckNameMatch(System.Windows.DependencyObject,System.String)">
+            <summary>
+            Checks if a node's name matches exact passed name or regex.
+            </summary>
+            <param name="node">The node to check, must be a <see cref="T:System.Windows.FrameworkElement"/> 
+            or <see cref="T:System.Windows.FrameworkContentElement"/> to read the 'Name' property.</param>
+            <param name="name">The exact name or regex to assess.</param>
+            <returns>True if node's name matches passed name, false otherwise.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions">
+            <summary>
+            Provides a set of extensions on <see cref="T:System.Windows.DependencyObject"/> to navigate a visual tree 
+            and either find a specific descendant or ancestor.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindChild``1(System.Windows.DependencyObject,System.String,System.Boolean)">
+            <summary>
+            Finds a child of in the visual tree using its type and (optionally) its name and with
+            the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while exploring the visual tree.
+            </summary>
+            <typeparam name="T">The type of the queried item.</typeparam>
+            <param name="node">The node where to start looking from.</param>
+            <param name="name">Optional name or regex that matches name of the child to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>A matching child, or default if none existing.</returns>
+            <remarks>Adapted from https://stackoverflow.com/questions/636383/how-can-i-find-wpf-controls-by-name-or-type. </remarks>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindChildByType(System.Windows.DependencyObject,System.Type,System.String,System.Boolean)">
+            <summary>
+            Finds a child of in the visual tree using its type and (optionally) its name and with
+            the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while exploring the visual tree.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="type">Type of the child to find.</param>
+            <param name="name">Optional name or regex that matches name of the child to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>A matching child, or null if none existing.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindDirectChild``1(System.Windows.DependencyObject,System.String,System.Boolean)">
+            <summary>
+            Finds the first occurence of a typed child in the descendancy of a <see cref="T:System.Windows.DependencyObject"/> node 
+            with optional name filtering and with the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects 
+            while exploring the visual tree.
+            Direct as it only goes through the first child of visual elements, contrary to <see cref="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindChild``1(System.Windows.DependencyObject,System.String,System.Boolean)"/> which looks 
+            searches any children of a node to find the first matching result.
+            </summary>
+            <typeparam name="T">The type of the child to find.</typeparam>
+            <param name="node">The node where to start looking from.</param>
+            <param name="name">Optional name or regex that matches name of the child to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>A matching child, or default if none existing in the direct path.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindDirectChildByType(System.Windows.DependencyObject,System.Type,System.String,System.Boolean)">
+            <summary>
+            Finds the first occurence of a typed child in the descendancy of a <see cref="T:System.Windows.DependencyObject"/> node 
+            with optional name filtering and with the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects 
+            while exploring the visual tree.
+            Direct as it only goes through the first child of visual elements, contrary to <see cref="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindChild``1(System.Windows.DependencyObject,System.String,System.Boolean)"/> which looks 
+            searches any children of a node to find the first matching result.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="type">Type of the child to find.</param>
+            <param name="name">Optional name or regex that matches name of the child to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>A matching child, or null if none existing in the direct path.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindAllChildren``1(System.Windows.DependencyObject,System.String,System.Boolean)">
+            <summary>
+            Gets the filtered-by-type complete descendancy of a given dependency object with 
+            the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while walking down the visual tree.
+            </summary>
+            <typeparam name="T">The type of the children to find.</typeparam>
+            <param name="node">The node where to start looking from.</param>
+            <param name="name">An optional name or regex pattern to be used for filtering during search.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>All found children elements that match method type.</returns>
+            <remarks>Inspired from: https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.media.visualtreehelper 
+            and https://stackoverflow.com/questions/10279092/how-to-get-children-of-a-wpf-container-by-type. </remarks>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindAllChildrenByType(System.Windows.DependencyObject,System.Type,System.String,System.Boolean)">
+            <summary>
+            Gets the filtered-by-type complete descendancy of a given dependency object with 
+            the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while walking down the visual tree.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="type">Type of the child to find.</param>
+            <param name="name">An optional name or regex pattern to be used for filtering during search.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>All found children elements that match passed type.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindParent``1(System.Windows.DependencyObject,System.String,System.Boolean)">
+            <summary>
+            Finds a parent that matches static type and (optionally) the passed name 
+            with the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while walking up the visual tree.
+            </summary>
+            <typeparam name="T">Type of the object to find.</typeparam>
+            <param name="node">The node where to start looking from.</param>
+            <param name="name">Optional name or regex that matches name of the parent to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>The matching parent, or null if none.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindParentByType(System.Windows.DependencyObject,System.Type,System.String,System.Boolean)">
+            <summary>
+            Finds a parent that matches passed target (and dynamically defined) type and (optionally) a passed name
+            with the ability to travel through <see cref="T:System.Windows.ContentElement"/> objects while walking up the visual tree.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="type">The explicit type the parent should have.</param>
+            <param name="name">Optional name or regex that matches name of the parent to find.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>The matching parent, or null if none.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.FindParentByLevel(System.Windows.DependencyObject,System.Int32,System.Boolean)">
+            <summary>
+            Return a parent at a given ancestry level with the ability to travel through 
+            <see cref="T:System.Windows.ContentElement"/> objects while walking up the visual tree.
+            </summary>
+            <param name="node">The node where to start looking from.</param>
+            <param name="level">The ancestry level the parent is at regarding to passed node.</param>
+            <param name="allowContentElements">Enables or disables the ability to go through <see cref="T:System.Windows.ContentElement"/> objects,
+            thus allowing or forbidding logical tree travels for these items.</param>
+            <returns>The parent at given ancestry level, or null if none found at that level.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFVisualTreeHelper.WpfVisualFindersExtensions.GetParentExtended(System.Windows.DependencyObject)">
+            <summary>
+            Alternative to WPF <see cref="M:System.Windows.Media.VisualTreeHelper.GetParent(System.Windows.DependencyObject)"/> method, 
+            which also supports navigation through <see cref="T:System.Windows.ContentElement"/> objects that
+            are not strictly speaking in the visual tree.</summary>
+            <param name="node">The item to be processed.</param>
+            <returns>The submitted item's parent, if available, null otherwise.</returns>
+            <remarks>Adapted from http://www.hardcodet.net/2008/02/find-wpf-parent. </remarks>
+        </member>
+    </members>
+</doc>

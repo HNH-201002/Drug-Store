@@ -1,0 +1,1444 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExtendedWPFConverters</name>
+    </assembly>
+    <members>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanConverterBase`1">
+            <summary>
+            Base class for all converters that takes as input a single <see cref="T:System.Boolean"/> value to
+            transform it in a <typeparamref name="TResult"/> object.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanConverterBase`1.ValueForTrue">
+            <summary>
+            Result to be returned when converted value is true.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanConverterBase`1.ValueForFalse">
+            <summary>
+            Result to be returned when converted value is false.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanConverterBase`1.ValueForInvalid">
+            <summary>
+            Result to be returned when input value is null or not boolean.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanConverterBase`1.Operation">
+            <summary>
+            Specifies the operation to be applied with the converter.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.BooleanConverterBase`1.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Makes an association between a boolean entry and a <typeparamref name="TResult"/> object to be returned 
+            after being processed by the specified <see cref="T:EMA.ExtendedWPFConverters.ReducedBooleanOperation"/> (default is none).
+            </summary>
+            <param name="value">A boolean entry.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">An optional value for "true" output (overrides parameterized one named <see cref="P:EMA.ExtendedWPFConverters.BooleanConverterBase`1.ValueForTrue"/>).</param>
+            <param name="culture">Unused.</param>
+            <returns>A value corresponding to the boolean entry value once processed by the specified <see cref="P:EMA.ExtendedWPFConverters.BooleanConverterBase`1.Operation"/>.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if the boolean operation is not supported.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.BooleanConverterBase`1.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <typeparamref name="TResult"/> back into a boolean.
+            </summary>
+            <param name="value">A <typeparamref name="TResult"/> entry.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A boolean value that matches best the passed entry.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.BooleanConverterBase`1.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanConverterBaseForMultibinding`1">
+            <summary>
+            Base class for all converters that takes multiple <see cref="T:System.Boolean"/> values as input to
+            transform them in a <typeparamref name="TResult"/> object through a specified <see cref="T:EMA.ExtendedWPFConverters.BooleanOperation"/>.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanConverterBaseForMultibinding`1.ValueForTrue">
+            <summary>
+            Result to be returned when converted value is true.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanConverterBaseForMultibinding`1.ValueForFalse">
+            <summary>
+            Result to be returned when converted value is false.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanConverterBaseForMultibinding`1.ValueForInvalid">
+            <summary>
+            Result to be returned when input values are not all booleans.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanConverterBaseForMultibinding`1.Operation">
+            <summary>
+            Specifies the operation to be applied with the converter.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.BooleanConverterBaseForMultibinding`1.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts several booleans to a single <typeparamref name="TResult"/> object. Booleans are combined through a boolean operation.
+            </summary>
+            <param name="values">The array boolean of values that the source bindings in the MultiBinding produces. 
+            The value UnsetValue indicates that the source binding has no value to provide for conversion.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The  <typeparamref name="TResult"/> result of the boolean operation applied to all boolean inputs.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if the boolean operation is not supported.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.BooleanConverterBaseForMultibinding`1.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetTypes">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.BooleanConverterBaseForMultibinding`1.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanOperation">
+            <summary>
+            A set of boolean operation that can be 
+            used as parameter for various converters.
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.None">
+            <summary>
+            Do nothing operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.Not">
+            <summary>
+            Boolean inversion operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.Equality">
+            <summary>
+            Boolean equality check operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.And">
+            <summary>
+            Boolean 'AND' operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.Or">
+            <summary>
+            Boolean 'OR' operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.Xor">
+            <summary>
+            Boolean 'Exclusive OR' operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.Nand">
+            <summary>
+            Boolean 'Not AND' operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.Nor">
+            <summary>
+            Boolean 'Not OR' operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.BooleanOperation.XNor">
+            <summary>
+            Boolean 'Exclusive NOR' operation
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.ReducedBooleanOperation">
+            <summary>
+            Just enumerates None and Not boolean operations.
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.ReducedBooleanOperation.None">
+            <summary>
+            Do nothing operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.ReducedBooleanOperation.Not">
+            <summary>
+            Boolean inversion operation
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToBooleanConverter">
+            <summary>
+            A converter to perform operations over a single boolean value.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToBooleanConverter.ValueForTrue">
+            <summary>
+            Result to be returned when converted value is true.
+            </summary>
+            <remarks>Cannot be edited.</remarks>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToBooleanConverter.ValueForFalse">
+            <summary>
+            Result to be returned when converted value is false.
+            </summary>
+            <remarks>Cannot be edited.</remarks>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToBooleanConverter.ValueForInvalid">
+            <summary>
+            Result to be returned when input value is null or not boolean.
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToBooleanConverterForMultibinding">
+            <summary>
+            A converter for multi-boolean operations to be used with MultiBinding.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToBooleanConverterForMultibinding.ValueForTrue">
+            <summary>
+            Result to be returned when converted value is true.
+            </summary>
+            <remarks>Cannot be edited.</remarks>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToBooleanConverterForMultibinding.ValueForFalse">
+            <summary>
+            Result to be returned when converted value is false.
+            </summary>
+            <remarks>Cannot be edited.</remarks>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToBooleanConverterForMultibinding.ValueForInvalid">
+            <summary>
+            Result to be returned when input values are not all booleans.
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToFontWeightConverter">
+            <summary>
+            A converter that transforms a boolean value into a <see cref="T:System.Windows.FontWeight"/>.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToFontWeightConverter.ValueForTrue">
+            <summary>
+            <see cref="T:System.Windows.FontWeight"/> value to be applied when converted value is true.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToFontWeightConverter.ValueForFalse">
+            <summary>
+            <see cref="T:System.Windows.FontWeight"/> value to be applied when converted value is false.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToFontWeightConverter.ValueForInvalid">
+            <summary>
+            <see cref="T:System.Windows.FontWeight"/> value to be applied when input value is invalid (null or not boolean).
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToNumberConverter">
+            <summary>
+            Converts a boolean value into an <see cref="T:System.IComparable"/> one.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToNumberConverter.ValueForTrue">
+            <summary>
+            Result to be returned when converted value is true.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToNumberConverter.ValueForFalse">
+            <summary>
+            Result to be returned when converted value is false.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToNumberConverter.ValueForInvalid">
+            <summary>
+            Result to be returned when converted value is null or is not a boolean.
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToObjectConverter">
+            <summary>
+            Converts a boolean value into an object passed as 
+            parameter or as <see cref="P:EMA.ExtendedWPFConverters.BooleanConverterBase`1.ValueForTrue"/>.
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToOpacityConverter">
+            <summary>
+            Converts a boolean value into an opacity level.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToOpacityConverter.ValueForTrue">
+            <summary>
+            Value to be applied when converted value is true.
+            </summary>
+            <exception cref="T:System.ArgumentException">If passed value is negative or >1.</exception>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToOpacityConverter.ValueForFalse">
+            <summary>
+            Value to be applied when converted value is false.
+            </summary>
+            <exception cref="T:System.ArgumentException">If passed value is negative or >1.</exception>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToOpacityConverter.ValueForInvalid">
+            <summary>
+            Value to be applied when converted value is null or is not a boolean.
+            </summary>
+            <exception cref="T:System.ArgumentException">If passed value is negative or >1.</exception>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToThicknessConverter">
+            <summary>
+            Converts a boolean value into a <see cref="T:System.Windows.Thickness"/> one.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToThicknessConverter.ValueForTrue">
+            <summary>
+            <see cref="T:System.Windows.Thickness"/> value to be applied when conversion operation output is true.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToThicknessConverter.ValueForFalse">
+            <summary>
+            <see cref="T:System.Windows.Thickness"/> value to be applied when conversion operation output is false.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToThicknessConverter.ValueForInvalid">
+            <summary>
+            <see cref="T:System.Windows.Thickness"/> value to be applied when input is null or not boolean.
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToVisibilityConverter">
+            <summary>
+            Converts a boolean value into a <see cref="T:System.Windows.Visibility"/> object.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToVisibilityConverter.ValueForTrue">
+            <summary>
+            Result to be returned when converted value is true.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToVisibilityConverter.ValueForFalse">
+            <summary>
+            Result to be returned when converted value is false.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToVisibilityConverter.ValueForInvalid">
+            <summary>
+            Result to be returned when converted value is null or is not a boolean.
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.BooleanToVisibilityConverterForMultibinding">
+            <summary>
+            Converts boolean entries into a <see cref="T:System.Windows.Visibility"/> object through a specified <see cref="T:EMA.ExtendedWPFConverters.BooleanOperation"/>.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToVisibilityConverterForMultibinding.ValueForTrue">
+            <summary>
+            Result to be returned when converted value is true.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToVisibilityConverterForMultibinding.ValueForFalse">
+            <summary>
+            Result to be returned when converted value is false.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.BooleanToVisibilityConverterForMultibinding.ValueForInvalid">
+            <summary>
+            Result to be returned when input values are not all booleans.
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.CollectionCountConverter">
+            <summary>
+            Returns how many items a <see cref="T:System.Collections.IEnumerable"/> stores.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionCountConverter.OutputAsString">
+            <summary>
+            Indicates if the output should be a string or a int.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionCountConverter.DefaultCountValue">
+            <summary>
+            Gets or sets the default value to be returned when passed input value
+            is not iterable and thus cannot be counted.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionCountConverter.DefaultCountValueString">
+            <summary>
+            Gets or sets the default value to be returned when passed input value
+            is not iterable and thus cannot be counted.
+            </summary>
+            <remarks>Active when <see cref="P:EMA.ExtendedWPFConverters.CollectionCountConverter.OutputAsString"/> is set.abstract</remarks>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionCountConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns the number of items the passed <see cref="T:System.Collections.IEnumerable"/> has.
+            </summary>
+            <param name="value">A <see cref="T:System.Collections.IEnumerable"/> entry.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The number of items the collection contains.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionCountConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionCountConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.CollectionFirstItemConverter">
+            <summary>
+            Returns the first value of a <see cref="T:System.Collections.IEnumerable"/>.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionFirstItemConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns the first item of a <see cref="T:System.Collections.IEnumerable"/> input.
+            </summary>
+            <param name="value">A <see cref="T:System.Collections.IEnumerable"/>> entry.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The first item of the collection or null if n.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionFirstItemConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionFirstItemConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.CollectionFirstItemConverterForMultiBinding">
+            <summary>
+            Returns the first value of a collection or the first value of a multibinding. 
+            </summary>
+            <remarks>Useful to force refreshment of a target property based on a non-notifiable bound property.
+            Refresh is then triggered by one or many other bound properties.</remarks>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionFirstItemConverterForMultiBinding.AsIEnumerable">
+            <summary>
+            Gets or sets a value indicating if item is
+            a <see cref="T:System.Collections.Generic.IEnumerable`1"/> for which the first item must be returned.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionFirstItemConverterForMultiBinding.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Gets and returns the first passed value or the first item of the list passed 
+            as first item is <see cref="P:EMA.ExtendedWPFConverters.CollectionFirstItemConverterForMultiBinding.AsIEnumerable"/> is activated.
+            </summary>
+            <param name="values">A set of values.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The first value of the passed set of values, or null is not existing.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionFirstItemConverterForMultiBinding.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetTypes">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionFirstItemConverterForMultiBinding.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding">
+            <summary>
+            From a collection passed as a first argument, returns an element in this 
+            collection that is given as second argument if existing. This is similar to IList.IndexOf(item) method.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.OutputAsString">
+            <summary>
+            Indicates if the output should be a string or a int.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.ValueForNotFound">
+            <summary>
+            Gets or sets the default value to be returned when passed
+            item to retrieve the index of cannot be found in the collection.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.ValueStringForNotFound">
+            <summary>
+            Gets or sets the default value to be returned when passed
+            item to retrieve the index of cannot be found in the collection.
+            </summary>
+            <remarks>Used when <see cref="P:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.OutputAsString"/> is set.null</remarks>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.ValueForInvalid">
+            <summary>
+            Gets or sets the default value to be returned when passed input value
+            is not iterable.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.ValueStringForInvalid">
+            <summary>
+            Gets or sets the default value to be returned when passed input value
+            is not iterable.
+            <remarks>Used when <see cref="P:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.OutputAsString"/> is set.null</remarks>
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            From a collection passed as a first argument, returns the index of a passed second element 
+            in this collection if existing.
+            </summary>
+            <param name="values">The array of values that the source bindings in the MultiBinding produces. 
+            First item is the collection, second item is the index to retrieve.
+            The value UnsetValue indicates that the source binding has no value to provide for conversion.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The index of the item in the given collection, if any.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetTypes">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CollectionIndexOfConverterForMultiBinding.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.ColorToSolidColorBrushConverter">
+            <summary>
+            Converter to transform a <see cref="T:System.Windows.Media.Color"/> into a <see cref="T:System.Windows.Media.SolidColorBrush"/>.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.ColorToSolidColorBrushConverter.Default">
+            <summary>
+            Default value to be returned in case color is not valid.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ColorToSolidColorBrushConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.Media.Color"/> into a <see cref="T:System.Windows.Media.SolidColorBrush"/>.
+            </summary>
+            <param name="value">A <see cref="T:System.Windows.Media.Color"/> entry.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A <see cref="T:System.Windows.Media.SolidColorBrush"/> implementing the passed <see cref="T:System.Windows.Media.Color"/>.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ColorToSolidColorBrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.Media.SolidColorBrush"/> into a <see cref="T:System.Windows.Media.Color"/>.
+            </summary>
+            <param name="value">A <see cref="T:System.Windows.Media.SolidColorBrush"/> from which to extract a <see cref="T:System.Windows.Media.Color"/>.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The <see cref="T:System.Windows.Media.Color"/> contained into the passed entry, or the default color if entry is invalid.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ColorToSolidColorBrushConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.EnumMembersToDescriptionsConverter">
+            <summary>
+            Converts an <see cref="T:System.Enum"/> type to an array of string based on each member <see cref="P:System.ComponentModel.DescriptionAttribute.Description"/> value if any.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.EnumMembersToDescriptionsConverter.GetMembersWithNoDescription">
+            <summary>
+            If set, will include the name of the member in result even
+            if no description attribute is found. If unset, members without
+            attributes are not included in result.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.EnumMembersToDescriptionsConverter.ToTitleCase">
+            <summary>
+            If set, will format result into 'Title case'.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.EnumMembersToDescriptionsConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts an <see cref="T:System.Enum"/> type or value into a list of enum member's descriptions.
+            </summary>
+            <param name="value">The <see cref="T:System.Enum"/> type on which to extract member descriptions,
+            or a enum value on which the type will be extracted.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>An array of enum member descriptions based on the type.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.EnumMembersToDescriptionsConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.EnumMembersToDescriptionsConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.EnumValueToDescriptionConverter">
+            <summary>
+            Converts an <see cref="T:System.Enum"/> value to its <see cref="P:System.ComponentModel.DescriptionAttribute.Description"/> value if any.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.EnumValueToDescriptionConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Extracts the description of an <see cref="T:System.Enum"/> value.
+            </summary>
+            <param name="value">A <see cref="T:System.Enum"/> value to process.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The <see cref="P:System.ComponentModel.DescriptionAttribute.Description"/> of the value, or empty string if none is set.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.EnumValueToDescriptionConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns an <see cref="T:System.Enum"/> value that matching a passed description.
+            </summary>
+            <param name="value">The string containing the enum value description.</param>
+            <param name="targetType">The target <see cref="T:System.Enum"/> type.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The resulting enum value.</returns>
+            <exception cref="T:System.ArgumentException">Thrown if no <see cref="P:System.ComponentModel.DescriptionAttribute.Description"/> matches passed string or
+            if does not exist on the target <see cref="T:System.Enum"/> type.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.EnumValueToDescriptionConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.CornerRadiusToDoubleConverter">
+            <summary>
+            A converter that converts a uniform <see cref="T:System.Windows.CornerRadius"/> into a double.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CornerRadiusToDoubleConverter.ThrowOnNonUniformCornerRadius">
+            <summary>
+            Indicates if a <see cref="T:System.Exception"/> must be thrown when trying to convert
+            a <see cref="T:System.Windows.CornerRadius"/> that stores non-uniform double values, i.e.
+            <see cref="P:System.Windows.CornerRadius.TopLeft"/>, <see cref="P:System.Windows.CornerRadius.TopRight"/>,
+            <see cref="P:System.Windows.CornerRadius.BottomRight"/> or <see cref="P:System.Windows.CornerRadius.BottomLeft"/> are not equal.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CornerRadiusToDoubleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns the uniform value of a <see cref="T:System.Windows.CornerRadius"/> or the 
+            <see cref="P:System.Windows.CornerRadius.TopLeft"/> value.
+            </summary>
+            <param name="value">A <see cref="T:System.Windows.CornerRadius"/> entry to be convverted.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A the uniform <see cref="T:System.Windows.CornerRadius"/> or the <see cref="P:System.Windows.CornerRadius.TopLeft"/> value.</returns>
+            <exception cref="T:System.ArgumentException">The <see cref="T:System.Windows.CornerRadius"/> values were not uniform.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CornerRadiusToDoubleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns a uniform <see cref="T:System.Windows.CornerRadius"/> based on a <see cref="T:System.Double"/> value.
+            </summary>
+            <param name="value">A boolean value.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A uniform <see cref="T:System.Windows.CornerRadius"/>.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CornerRadiusToDoubleConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.ThicknessToDoubleConverter">
+            <summary>
+            A converter that converts a uniform <see cref="T:System.Windows.Thickness"/> into a double.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.ThicknessToDoubleConverter.ThrowOnNonUniformThickness">
+            <summary>
+            Indicates if a <see cref="T:System.Exception"/> must be thrown when trying to convert
+            a <see cref="T:System.Windows.Thickness"/> that stores non-uniform double values, i.e.
+            <see cref="P:System.Windows.Thickness.Left"/>, <see cref="P:System.Windows.Thickness.Top"/>,
+            <see cref="P:System.Windows.Thickness.Right"/> or <see cref="P:System.Windows.Thickness.Bottom"/> are not equal.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ThicknessToDoubleConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns the uniform value of a <see cref="T:System.Windows.Thickness"/> or the 
+            <see cref="P:System.Windows.Thickness.Left"/> value.
+            </summary>
+            <param name="value">A <see cref="T:System.Windows.Thickness"/> entry to be converted.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A the uniform <see cref="T:System.Windows.Thickness"/> or the <see cref="P:System.Windows.Thickness.Left"/> value.</returns>
+            <exception cref="T:System.ArgumentException">The <see cref="T:System.Windows.Thickness"/> values were not uniform.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ThicknessToDoubleConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns a uniform <see cref="T:System.Windows.Thickness"/> based on a <see cref="T:System.Double"/> value.
+            </summary>
+            <param name="value">A boolean value.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A uniform <see cref="T:System.Windows.Thickness"/>.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ThicknessToDoubleConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.ImageToBitmapImageConverter">
+            Imported and adapted by David from: https://www.codeproject.com/Tips/517457/Simple-Way-to-Bind-an-Image-Class-as-Source-to-Ima
+            <summary>
+            Converts an image to an ImageSource for WPF Image control bindings.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ImageToBitmapImageConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts an <see cref="T:System.Drawing.Image"/> into a <see cref="T:System.Windows.Media.Imaging.BitmapImage"/> that is usable in 
+            any WPF <see cref="T:System.Windows.Controls.Image"/>.
+            </summary>
+            <param name="value">A <see cref="T:System.Drawing.Image"/> source entry.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A <see cref="T:System.Windows.Media.Imaging.BitmapImage"/> ready to be rendered.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ImageToBitmapImageConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ImageToBitmapImageConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.MathConverter">
+            <summary>
+            Performs a mathematical operation between a number and another 
+            one that is passed as parameter of the converter.
+            </summary>
+            <remarks>Inspired from WPF converters of http://materialdesigninxaml.net/</remarks>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.MathConverter.Operation">
+            <summary>
+            Mathematics operation to be applied.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.MathConverter.ValueForInvalid">
+            <summary>
+            Value to be applied when converted value is null or is not a boolean.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.MathConverter.OutputAsString">
+            <summary>
+            Indicates if the output should be a double or a string.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.MathConverter.InputAsString">
+            <summary>
+            Private. Indicates if the input is a double or a string.
+            </summary>
+            <remarks>Used only for convert back method.</remarks>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.MathConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Performs a mathematical operation between entry and parameter and returns the result.
+            </summary>
+            <param name="value">A numerical value.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">A numerical value.</param>
+            <param name="culture">Unused.</param>
+            <returns>The result of the parameterized mathematical operation between entry and the parameter.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if the math operation is not supported.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.MathConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Performs an inverse mathematical operation on the entry and a passed parameter and returns the result.
+            </summary>
+            <param name="value">A numerical value.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">A numerical value.</param>
+            <param name="culture">Unused.</param>
+            <returns>The inverse result of what should be obtained on the passed entries if the <see cref="M:EMA.ExtendedWPFConverters.MathConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> method was called.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if the math operation is not supported for convert back.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.MathConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.MathConverterForMultibinding">
+            <summary>
+            Performs a mathematical operation on a passed set of numbers.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.MathConverterForMultibinding.Operation">
+            <summary>
+            Mathematics operation to be applied.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.MathConverterForMultibinding.ValueForInvalid">
+            <summary>
+            Value to be applied when converted value is null or is not a boolean.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.MathConverterForMultibinding.OutputAsString">
+            <summary>
+            Indicates if the output should be a double or a string.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.MathConverterForMultibinding.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Performs a mathematical operation on passed values.
+            </summary>
+            <param name="values">The array of numerical values that the source bindings in the MultiBinding produces. 
+            The value UnsetValue indicates that the source binding has no value to provide for conversion.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A numerical value based on the result of the mathematical operation applied to all numerical inputs.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if the math operation is not supported.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.MathConverterForMultibinding.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetTypes">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.MathConverterForMultibinding.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.Utils.MathExtensions">
+            <summary>
+            A set of mathematical methods to extend the behavior of integers.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.Utils.MathExtensions.InverseUnderModulo(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Performs a reverse multiplicative modular operation.
+            </summary>
+            <params name="a">Base value to invert.</params>
+            <params name="m">Pivot value against which to find the inverse mod of.</params>
+            <params name="result">Inverse mod of the passed number a against passed .</params>
+            <returns>The modular inverse of passed value.</returns>
+            <remarks>From: https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/</remarks>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.MathOperation">
+            <summary>
+            A set of mathematical operation that can be 
+            used as parameter for various converters.
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.None">
+            <summary>
+            No operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.Add">
+            <summary>
+            Sum operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.Subtract">
+            <summary>
+            Difference operation (outputs negative results) 
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.SubtractPositiveOnly">
+            <summary>
+            Difference operation (outputs 0 when result is negative)
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.Multiply">
+            <summary>
+            Product operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.Divide">
+            <summary>
+            Division operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.Modulo">
+            <summary>
+            Modulo operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.Power">
+            <summary>
+            'Raise to power' operation
+            </summary>
+        </member>
+        <member name="F:EMA.ExtendedWPFConverters.MathOperation.Absolute">
+            <summary>
+            Absolute value operation
+            </summary>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.InstanceToTypeConverter">
+            <summary>
+            Gets a given instance and returns its type.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.InstanceToTypeConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Extracts the <see cref="T:System.Type"/> of any given object.
+            </summary>
+            <param name="value">A non-null object.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The <see cref="T:System.Type"/> of the passed object.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.InstanceToTypeConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.InstanceToTypeConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.ObjectToObjectConverterWithActivators">
+            <summary>
+            Converter that returns first object (values[0]) or null regarding to passed boolean values in the next values[1..n] called activators.
+            This is a way to provide object based on bound conditions using multibinding.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.ObjectToObjectConverterWithActivators.ValueForInvalid">
+            <summary>
+            Value to be applied when passed boolean activators are invalid (not that providing
+            no boolean is considered as a valid input).
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.ObjectToObjectConverterWithActivators.ActivationOperation">
+            <summary>
+            Boolean operation to be applied during conversion.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ObjectToObjectConverterWithActivators.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns first passed object depending on a boolean operation applied to remaining boolean entries called 'activators'.
+            </summary>
+            <param name="values">Should contain the object to be returned in first position, then a set of boolean entries to be evaluated through a boolean operation.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The first passed object or null depending on the result of the boolean operation.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if the boolean operation is not supported.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ObjectToObjectConverterWithActivators.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetTypes">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.ObjectToObjectConverterWithActivators.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.TypePropertiesToDescriptionsConverter">
+            <summary>
+            Converts a type to an array of string based on each public property's <see cref="P:System.ComponentModel.DescriptionAttribute.Description"/> value if any.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.TypePropertiesToDescriptionsConverter.GetMembersWithNoDescription">
+            <summary>
+            If set, will include the name of the property in result even
+            if no description attribute is found. If unset, members without
+            attributes are not included in result.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.TypePropertiesToDescriptionsConverter.ToTitleCase">
+            <summary>
+            If set, will format result into 'Title case'.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.TypePropertiesToDescriptionsConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Extracts a list of property descriptions from a given <see cref="T:System.Type"/>.
+            </summary>
+            <param name="value">The type on which to extract property descriptions.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>An array of property descriptions based on the type.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.TypePropertiesToDescriptionsConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.TypePropertiesToDescriptionsConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.NotNullToVisibilityConverter">
+            <summary>
+            Converter for 'is null?' into a <see cref="T:System.Windows.Visibility"/> value.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullToVisibilityConverter.ValueForNull">
+            <summary>
+            Value to be applied when converted value is null.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullToVisibilityConverter.ValueForNotNull">
+            <summary>
+            Value to be applied when converted value is not null.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns <see cref="T:System.Windows.Visibility"/> value that correspond to the entry (null so not visible, not null so visible).
+            </summary>
+            <param name="value">An entry that can be null.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The <see cref="T:System.Windows.Visibility"/> value corresponding to the entry state.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns a null or non-null object depending on a passed visibility value.
+            </summary>
+            <param name="value">A <see cref="T:System.Windows.Visibility"/> entry.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>An object that will be non-null depending on the passed value.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullToVisibilityConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.CamelCaseStringToTitleStringConverter">
+            <summary>
+            Converts a string content from CamelCase to Title Case.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.CamelCaseStringToTitleStringConverter.FirstLetterIsLowerCase">
+            <summary>
+            If set, will set an lower case letter when converting back to camelCase
+            (will be CamelCase if unset).
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CamelCaseStringToTitleStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a string content from CamelCase to Title Case.
+            </summary>
+            <param name="value">A string in the camel case format.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A string in the title case format.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CamelCaseStringToTitleStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Sets a string content to CamelCase.
+            </summary>
+            <param name="value">The string to be converted to camel case format.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A string in the camel case format.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.CamelCaseStringToTitleStringConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToBooleanConverter">
+            <summary>
+            A converter that returns the opposite value of <see cref="M:System.String.IsNullOrEmpty(System.String)"/> on a passed string (when
+            default values for <see cref="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToBooleanConverter.ValueForNotNullOrEmpty"/> and <see cref="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToBooleanConverter.ValueForNullOrEmpty"/> are not changed.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToBooleanConverter.ValueForNotNullOrEmpty">
+            <summary>
+            Value to be applied when converted string is not null nor empty.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToBooleanConverter.ValueForNullOrEmpty">
+            <summary>
+            Value to be applied when converted string is null or empty.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns the opposite value of <see cref="M:System.String.IsNullOrEmpty(System.String)"/> on the passed entry.
+            A boolean operation can be set to invert result.
+            </summary>
+            <param name="value">A string entry to be assessed.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A value indicating if the string entry is null or empty or not.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns a string for which the states depends on the result of a passed boolean value.
+            </summary>
+            <param name="value">A boolean value.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A string which will not be null or empty depending on the passed value and the current operation.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToBooleanConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverter">
+            <summary>
+            A converter that converts a string state into a <see cref="T:System.Windows.Visibility"/> value.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverter.ValueForNotNullOrEmpty">
+            <summary>
+            Value to be applied when converted string is not null nor empty.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverter.ValueForNullOrEmpty">
+            <summary>
+            Value to be applied when converted string is null or empty.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns <see cref="T:System.Windows.Visibility"/> value that correspond to a string entry state (null or empty so not visible, not null so visible).
+            </summary>
+            <param name="value">An string entry that can be null or empty.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>The <see cref="T:System.Windows.Visibility"/> value corresponding to the string entry state.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Returns a string for which the states depends on the result of a passed visibility value.
+            </summary>
+            <param name="value">A <see cref="T:System.Windows.Visibility"/> entry.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A string which will not be null or empty depending on the passed value.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverterWithActivators">
+            <summary>
+            Converts a string coupled to a set of optional booleans (activators) to a visibility value.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverterWithActivators.ValueForNotNullOrEmpty">
+            <summary>
+            Value to be applied when converted string is not null nor empty.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverterWithActivators.ValueForNullOrEmpty">
+            <summary>
+            Value to be applied when converted string is null or empty.
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverterWithActivators.ValueForInvalid">
+            <summary>
+            Value to be applied when passed boolean activators are invalid (not that providing
+            no boolean is considered as a valid input).
+            </summary>
+        </member>
+        <member name="P:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverterWithActivators.ActivationOperation">
+            <summary>
+            Operation to be used across the multiple bound values.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverterWithActivators.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a string and passed booleans to a visibility value regarding to whether the string is null or empty and the 
+            boolean operation result applied to boolean entries is verified.
+            </summary>
+            <param name="values">The array of values that the source bindings in the MultiBinding produces. 
+            First value must be the string to assess, while remaining values are booleans. 
+            The value UnsetValue indicates that the source binding has no value to provide for conversion.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>A visibility value based on the string state and the result of the boolean operation applied to boolean inputs.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if the boolean operation is not supported.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverterWithActivators.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Unsupported conversion method.
+            </summary>
+            <param name="value">Unused.</param>
+            <param name="targetTypes">Unused.</param>
+            <param name="parameter">Unused.</param>
+            <param name="culture">Unused.</param>
+            <returns>Nothing.</returns>
+            <exception cref="T:System.NotSupportedException">Thrown if this method is called.</exception>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.NotNullOrEmptyStringToVisibilityConverterWithActivators.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.StringToHorizontalAlignmentConverter">
+            <summary>
+            Converts a string into a <see cref="T:System.Windows.HorizontalAlignment"/> value.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringToHorizontalAlignmentConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a string into a <see cref="T:System.Windows.HorizontalAlignment"/> value.
+            </summary>
+            <param name="value">A string that is a direct representation of an alignment enum.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Optional function or a dictionary that contains function used for translation of the value in the 
+            current culture's language. See <see cref="M:EMA.ExtendedWPFConverters.StringTranslationHelper.CheckFetcherFormat(System.Object,System.Boolean)"/> for more details.</param>
+            <param name="culture">Optionally used by parameter to retrieve the right translation for the given input.</param>
+            <returns>The <see cref="T:System.Windows.HorizontalAlignment"/> that matches the string entry.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringToHorizontalAlignmentConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.HorizontalAlignment"/> value into a string.
+            </summary>
+            <param name="value">The <see cref="T:System.Windows.HorizontalAlignment"/> value to be converted back into string.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Optional function or a dictionary that contains function used for translation of the value in the 
+            current culture's language. See <see cref="M:EMA.ExtendedWPFConverters.StringTranslationHelper.CheckFetcherFormat(System.Object,System.Boolean)"/> for more details.</param>
+            <param name="culture">Optionally used by parameter to retrieve the right translation for the given input.</param>
+            <returns>A string value matching the <see cref="T:System.Windows.HorizontalAlignment"/> entry.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringToHorizontalAlignmentConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.StringToVerticalAlignmentConverter">
+            <summary>
+            Converts a string into a <see cref="T:System.Windows.VerticalAlignment"/> value.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringToVerticalAlignmentConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a string into a <see cref="T:System.Windows.VerticalAlignment"/> value.
+            </summary>
+            <param name="value">A string that is a direct representation of an alignment enum.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Optional function or a dictionary that contains function used for translation of the value in the 
+            current culture's language. See <see cref="M:EMA.ExtendedWPFConverters.StringTranslationHelper.CheckFetcherFormat(System.Object,System.Boolean)"/> for more details.</param>
+            <param name="culture">Optionally used by parameter to retrieve the right translation for the given input.</param>
+            <returns>The <see cref="T:System.Windows.VerticalAlignment"/> that matches the string entry.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringToVerticalAlignmentConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.Windows.VerticalAlignment"/> value into a string.
+            </summary>
+            <param name="value">The <see cref="T:System.Windows.VerticalAlignment"/> value to be converted back into string.</param>
+            <param name="targetType">Unused.</param>
+            <param name="parameter">Optional function or a dictionary that contains function used for translation of the value in the 
+            current culture's language. See <see cref="M:EMA.ExtendedWPFConverters.StringTranslationHelper.CheckFetcherFormat(System.Object,System.Boolean)"/> for more details.</param>
+            <param name="culture">Optionally used by parameter to retrieve the right translation for the given input.</param>
+            <returns>A string value matching the <see cref="T:System.Windows.VerticalAlignment"/> entry.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringToVerticalAlignmentConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided as the value of the target property for this markup extension
+            </summary>
+            <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
+            <returns>The object value to set on the property where the extension is applied.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.StingExtensions">
+            <summary>
+            Groups methods to be used for string translation through various types
+            of fetchers to be provided with converter calls.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StingExtensions.ToTitleCase(System.String)">
+            <summary>
+            Converts a string from 'camelCase' or 'CamelCase' to 'Title Case'.
+            </summary>
+            <param name="toSplit">The string to process.</param>
+            <returns>A string in the 'Title Case' format.</returns>
+        </member>
+        <member name="T:EMA.ExtendedWPFConverters.StringTranslationHelper">
+            <summary>
+            Groups methods to be used for string translation through various types
+            of fetchers to be provided with converter calls.
+            </summary>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringTranslationHelper.CheckFetcherFormat(System.Object,System.Boolean)">
+            <summary>
+            Checks if passed translation retriever object type is supported by the helper methods.
+            </summary>
+            <param name="translationGetter">A object to check for compatibility.</param>
+            <param name="bidirectionalOnly">If set to true, filter out types that support one-way translations.</param>
+            <returns>True if passed object type matches supported types in this helper class.</returns>
+            <remarks>The translation getter could be a one-way fetcher when its type is:
+            - a Func{string, string} that accepts the value as input and returns the corresponding translation
+            - a Func{string, CultureInfo, string} that accepts the value and the current CultureInfo as input and returns the corresponding translation
+            - a IDict{string culture, Func{string, string}} which contains the current culture's TwoLetterISOLanguageName or ThreeLetterISOLanguageName as culture key
+              and points to a function that accepts the value as input and returns the corresponding translation 
+            - a IDict{CultureInfo culture, Func{string, string}} which contains the current culture information as culture key and points to a function that accepts the 
+              value as input and returns the corresponding translation 
+            Or translation getter can be a bidirectional converter with an additional bool parameter which inverts the translation process if set to true:
+            - a Func{string, bool, string} that accepts the value as input and returns the corresponding translation when bool is true, do the opposite if false
+            - a Func{string, CultureInfo, bool, string} that accepts the value and the current CultureInfo as input and returns the corresponding translation
+            - a IDict{string culture, Func{string, bool, string}} which contains the current culture's TwoLetterISOLanguageName or ThreeLetterISOLanguageName as culture key
+              and points to a function that accepts the value as input and returns the corresponding translation 
+            - a IDict{CultureInfo culture, Func{string, bool, string}} which contains the current culture information as culture key and points to a function that accepts the 
+              value as input and returns the corresponding translation 
+            Or translation getter can be a dictionary of key-values per culture, in which case it is considered bidirectional by default:
+            - a IDict{string culture, IDict{string key, string value}} which contains, for a given culture's TwoLetterISOLanguageName or ThreeLetterISOLanguageName as culture, 
+            a dictionary containing the translations. Forward conversion will use the value to translate as key.
+            - a IDict{string culture, IDict{string key, string value}} which contains, for a given culture, a dictionary containing the translations. Forward conversion will 
+            use the value to translate as key.
+            </remarks>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringTranslationHelper.TryTranslateValue(System.String,System.Object,System.Globalization.CultureInfo,System.String@)">
+            <summary>
+            Tries to fetch a translation for a source value and from a method or a dictionary that are passed as parameter for a given culture.
+            </summary>
+            <param name="value">The value to be translated, used as a key for method calls and dictionary fetches.</param>
+            <param name="translationGetter">Compatible object to be used for translation retrieving. See <see cref="M:EMA.ExtendedWPFConverters.StringTranslationHelper.CheckFetcherFormat(System.Object,System.Boolean)"/> for more information.</param>
+            <param name="culture">Current culture information.</param>
+            <param name="translated">Result of the translation.</param>
+            <returns>True if translation succeeded, false otherwise.</returns>
+        </member>
+        <member name="M:EMA.ExtendedWPFConverters.StringTranslationHelper.TryTranslateValueBack(System.String,System.Object,System.Globalization.CultureInfo,System.String@)">
+            <summary>
+            Tries to fetch the original value from a translated value and from a method or a dictionary that are passed as parameter for a given culture.
+            </summary>
+            <param name="value">The already translated value to be converted back, used as a key for method calls and as value for dictionary fetches.</param>
+            <param name="translationGetter">Compatible object to be used for translation retrieving. See <see cref="M:EMA.ExtendedWPFConverters.StringTranslationHelper.CheckFetcherFormat(System.Object,System.Boolean)"/> for more information.</param>
+            <param name="culture">Current culture information.</param>
+            <param name="originalValue">Original value matching the entry.</param>
+            <returns>True if translate back operation succeeded, false otherwise.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="DrugStore.Menu_Elements.Sales_management.ManageCustomer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DrugStore.Menu_Elements.Sales_management"
+             mc:Ignorable="d" 
+              d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="14">
+    <Grid>
+        <!-- Use Grid to divide the Window into 2 Rows -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- The first Row is used for the order search bar -->
+            <RowDefinition Height="*" />
+            <!-- The second Row is used for the list of orders -->
+        </Grid.RowDefinitions>
+
+        <!-- First Row: Order search bar -->
+        <Grid Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <materialDesign:PackIcon Kind="Magnify" VerticalAlignment="Center" Margin="0,0,5,0"
+                                      Foreground="{DynamicResource MaterialDesignBody}" />
+            <TextBox Grid.Column="1" VerticalAlignment="Center"
+                     Style="{DynamicResource MaterialDesignFilledTextFieldTextBox}"
+                     materialDesign:HintAssist.Hint="Search" 
+                     x:Name="SearchTextBox" 
+                       TextChanged="SearchTextBox_TextChanged"/>
+            <Button Grid.Column="2" Content="New Customer" VerticalAlignment="Center"
+                    Style="{DynamicResource MaterialDesignRaisedButton}" Margin="5,0,0,0"
+                    Command="{Binding SearchCommand}" Click="NewCustomer_Click"/>
+        </Grid>
+
+        <!-- Second Row: List of orders -->
+        <ListView Grid.Row="1" Margin="10" ItemsSource="{Binding Customers}" x:Name="listView"
+                  Background="{DynamicResource MaterialDesignPaper}">
+            <!-- Format the columns in the ListView -->
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" />
+
+                    <GridViewColumn Header="Avatar">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="150" Height="150">
+                                    <Image.Source>
+                                        <BitmapImage UriSource="{Binding Avatar}" />
+                                    </Image.Source>
+                                </Image>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Gender" DisplayMemberBinding="{Binding Gender}" />
+                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="Start Acc" DisplayMemberBinding="{Binding StartAccount}" />
+                    <GridViewColumn Header="Medical history" DisplayMemberBinding="{Binding MedicalHistory}" />
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" />
+                </GridView>
+            </ListView.View>
+
+            <ListView.Resources>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItemSelected" />
+                </Style>
+            </ListView.Resources>
+        </ListView>
+    </Grid>
+</UserControl>

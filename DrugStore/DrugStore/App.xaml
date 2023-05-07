@@ -1,0 +1,17 @@
+﻿<Application x:Class="DrugStore.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DrugStore"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="IconStyle" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <!-- Left Top  -->
+        </Style>
+        <Style x:Key="TextMenu" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextDecorations" Value="Underline"/>
+            <!-- Left Top  -->
+        </Style>
+    </Application.Resources>
+</Application>
