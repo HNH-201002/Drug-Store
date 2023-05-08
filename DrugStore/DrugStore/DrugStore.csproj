@@ -165,6 +165,7 @@
     <Compile Include="SettingUserControl.xaml.cs">
       <DependentUpon>SettingUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StringToUriConverter.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\DrugViewModel.cs" />
     <Compile Include="ViewModel\FinancialViewModel.cs" />

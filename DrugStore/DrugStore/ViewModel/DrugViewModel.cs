@@ -57,12 +57,13 @@ namespace DrugStore.ViewModel
         }
         public void SaveDrugData()
         {
-            _dataFolderPath = settingUserControl.GetFileAddress(_drugDataFilePath);
-            if (string.IsNullOrEmpty(_dataFolderPath))
+            if (!Directory.Exists(settingUserControl.GetFileAddress()))
             {
                 MessageBox.Show("Please go to the settings and specify the location to save the file");
                 return;
             }
+            _dataFolderPath = Path.Combine(settingUserControl.GetFileAddress() , _drugDataFilePath);
+
             var Data = new Data { Drugs = Drugs.ToList() };
             var json = JsonConvert.SerializeObject(Data);
             var filePath = _dataFolderPath;
@@ -71,12 +72,12 @@ namespace DrugStore.ViewModel
 
         public void LoadDrugData()
         {
-            _dataFolderPath = settingUserControl.GetFileAddress(_drugDataFilePath);
-            if (string.IsNullOrEmpty(_dataFolderPath))
+            if (!Directory.Exists(settingUserControl.GetFileAddress()))
             {
-                //MessageBox.Show("You don't have data to load or you haven't specified where to save the file");
                 return;
             }
+            _dataFolderPath = Path.Combine(settingUserControl.GetFileAddress() , _drugDataFilePath);
+
             var filePath = _dataFolderPath;
             if (File.Exists(filePath))
             {
@@ -90,7 +91,7 @@ namespace DrugStore.ViewModel
             }
             else
             {
-                MessageBox.Show("Drug data file does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                
                 return;
             }
         }

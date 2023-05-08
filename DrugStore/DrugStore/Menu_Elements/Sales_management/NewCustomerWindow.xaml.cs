@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace DrugStore.Menu_Elements.Sales_management
 {
@@ -69,8 +70,8 @@ namespace DrugStore.Menu_Elements.Sales_management
             id = _viewModel.Customers.Count;
             if (string.IsNullOrEmpty(pathImage))
             {
-                // If pathImage is null or empty, set it to the default image path
-                pathImage = "Resources\\Icon\\DefaultAvatar.jpg";
+
+                pathImage = "Resources/Icon/DefaultAvatar.jpg";
             }
 
             // Tạo đối tượng Drug

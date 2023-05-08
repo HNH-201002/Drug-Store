@@ -30,13 +30,13 @@ namespace DrugStore.ViewModel
 
             _settingUserControl = new SettingUserControl();
             // tính toán tổng số tiền của tất cả đơn hàng
-            string orderJsonPath = _settingUserControl.GetFileAddress(OrderJsonName);
+            string orderJsonPath = _settingUserControl.GetFileAddress();
             string orderJson = File.ReadAllText(orderJsonPath);
             var orderData = JsonConvert.DeserializeObject<Data>(orderJson);
             _revenue = orderData.Orders.Sum(o => o.Sum);
 
             // tính toán tổng số tiền của tất cả thuốc trong kho
-            string drugJsonPath = _settingUserControl.GetFileAddress(DrugName);
+            string drugJsonPath = _settingUserControl.GetFileAddress();
             string drugJson = File.ReadAllText(drugJsonPath);
             var drugData = JsonConvert.DeserializeObject<Data>(drugJson);
             _assets = drugData.Drugs.Sum(d => d.Price * d.Quantity);

@@ -81,25 +81,24 @@ namespace DrugStore.ViewModel
         }
         public void SaveOrderData()
         {
-            _dataFolderPath = settingUserControl.GetFileAddress(_orderDataFilePath);
-            if (string.IsNullOrEmpty(_dataFolderPath))
+            if (!Directory.Exists(settingUserControl.GetFileAddress()))
             {
                 MessageBox.Show("Please go to the settings and specify the location to save the file");
                 return;
             }
+            _dataFolderPath = Path.Combine(settingUserControl.GetFileAddress(), _orderDataFilePath);
+
             var Data = new Data { Orders = Orders.ToList() };
             var json = JsonConvert.SerializeObject(Data);
-            var filePath = _dataFolderPath;
-            File.WriteAllText(filePath, json);
+            File.WriteAllText(_dataFolderPath, json);
         }
         public void LoadOrderData()
         {
-            _dataFolderPath = settingUserControl.GetFileAddress(_orderDataFilePath);
-            if (string.IsNullOrEmpty(_dataFolderPath))
+            if (!Directory.Exists(settingUserControl.GetFileAddress()))
             {
-                //MessageBox.Show("You don't have data to load or you haven't specified where to save the file");
                 return;
             }
+            _dataFolderPath = Path.Combine(settingUserControl.GetFileAddress(), _orderDataFilePath);
             var filePath = _dataFolderPath;
             if (File.Exists(filePath))
             {
@@ -112,8 +111,7 @@ namespace DrugStore.ViewModel
                 }
             }
             else
-            {
-                MessageBox.Show("Order data file does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            { 
                 return;
             }
         }
@@ -124,6 +122,7 @@ namespace DrugStore.ViewModel
 
         public void EditOrder(OrderManage originalOrder, OrderManage updatedOrder)
         {
+            updatedOrder.ID = originalOrder.ID;
             DeleteOrder(originalOrder);
             AddOrder(updatedOrder);
         }

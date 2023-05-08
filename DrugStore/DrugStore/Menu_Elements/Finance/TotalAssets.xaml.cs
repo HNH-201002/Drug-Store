@@ -36,14 +36,47 @@ namespace DrugStore.Menu_Elements.Finance
             _settingUserControl = new SettingUserControl();
 
             // tính toán tổng số tiền của tất cả đơn hàng
-            string orderJsonPath = _settingUserControl.GetFileAddress(OrderJsonName);
-            string orderJson = File.ReadAllText(orderJsonPath);
+            string orderJsonPath = _settingUserControl.GetFileAddress();
+            if (!Directory.Exists(orderJsonPath))    
+             {
+                Revenue = new ChartValues<double> { _revenue };
+                Assets = new ChartValues<double> { _assets };
+                TxtAssets.Text = "Assets : " + _assets.ToString("#,##0.##") + "đ";
+                TxtRevenue.Text = "Revenue : " + _revenue.ToString("#,##0.##") + "đ";
+                TxtSum.Text = "Total money : " + (_assets + _revenue).ToString("#,##0.##") + "đ";
+                DataContext = this;
+                _revenue = 0.0;
+                _assets = 0.0;
+                return;
+            }
+            if (!File.Exists(System.IO.Path.Combine(orderJsonPath , OrderJsonName)) || !File.Exists(System.IO.Path.Combine(orderJsonPath, DrugName)))
+            {
+                Revenue = new ChartValues<double> { _revenue };
+                Assets = new ChartValues<double> { _assets };
+                TxtAssets.Text = "Assets : " + _assets.ToString("#,##0.##") + "đ";
+                TxtRevenue.Text = "Revenue : " + _revenue.ToString("#,##0.##") + "đ";
+                TxtSum.Text = "Total money : " + (_assets + _revenue).ToString("#,##0.##") + "đ";
+                DataContext = this;
+                _revenue = 0.0;
+                _assets = 0.0;
+                return;
+            }
+
+            if (!File.Exists(System.IO.Path.Combine(orderJsonPath , OrderJsonName)))
+            {
+                return;
+            }
+            string orderJson = File.ReadAllText(System.IO.Path.Combine(orderJsonPath, OrderJsonName));
             var orderData = JsonConvert.DeserializeObject<Data>(orderJson);
             _revenue = orderData.Orders.Sum(o => o.Sum);
 
+            if (!File.Exists(System.IO.Path.Combine(orderJsonPath, DrugName)))
+            {
+                return;
+            }
             // tính toán tổng số tiền của tất cả thuốc trong kho
-            string drugJsonPath = _settingUserControl.GetFileAddress(DrugName);
-            string drugJson = File.ReadAllText(drugJsonPath);
+            string drugJsonPath = _settingUserControl.GetFileAddress();
+            string drugJson = File.ReadAllText(System.IO.Path.Combine(drugJsonPath,DrugName));
             var drugData = JsonConvert.DeserializeObject<Data>(drugJson);
             _assets = drugData.Drugs.Sum(d => d.Price * d.Quantity);
 

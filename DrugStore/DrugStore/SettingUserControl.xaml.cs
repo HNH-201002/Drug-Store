@@ -79,7 +79,7 @@ namespace DrugStore
             string filePath = System.IO.Path.Combine(folderPath, fileName);
             if (!File.Exists(filePath))
             {
-                //MessageBox.Show("Make sure that you have specified the location to save the file");
+                
                 return;
             }
             string json = File.ReadAllText(filePath);
@@ -91,12 +91,12 @@ namespace DrugStore
             _filePath = json;
             _FilePath = @PathTextBox.Text;
         }
-        public string GetFileAddress(string nameFile)
+        public string GetFileAddress()
         {
             LoadFileAddress();
-            if (File.Exists(System.IO.Path.Combine(_FilePath, nameFile)))
+            if (Directory.Exists(_FilePath))
             {
-                return System.IO.Path.Combine(_FilePath, nameFile);
+                return _FilePath;
             }
             else
             {

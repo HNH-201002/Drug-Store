@@ -71,31 +71,32 @@ namespace DrugStore.ViewModel
 
         public void SaveCustomerData()
         {
-            _dataFolderPath = settingUserControl.GetFileAddress(_customerDataFilePath);
-            if (string.IsNullOrEmpty(_dataFolderPath))
+            if (!Directory.Exists(settingUserControl.GetFileAddress()))
             {
                 MessageBox.Show("Please go to the settings and specify the location to save the file");
                 return;
             }
+            _dataFolderPath = Path.Combine(settingUserControl.GetFileAddress() , _customerDataFilePath);
             var Data = new Data { Customers = Customers.ToList() };
             var json = JsonConvert.SerializeObject(Data);
-            var filePath = _dataFolderPath;
-            File.WriteAllText(filePath, json);
+            File.WriteAllText(_dataFolderPath, json);
         }
 
         public void LoadCustomerData()
         {
-            _dataFolderPath = settingUserControl.GetFileAddress(_customerDataFilePath);
-            if (string.IsNullOrEmpty(_dataFolderPath))
+            if (!Directory.Exists(settingUserControl.GetFileAddress()))
             {
-                //MessageBox.Show("You don't have data to load or you haven't specified where to save the file");
                 return;
             }
-            var filePath = _dataFolderPath;
-            if (File.Exists(filePath))
+            _dataFolderPath = Path.Combine(settingUserControl.GetFileAddress() , _customerDataFilePath);
+            if (File.Exists(_dataFolderPath))
             {
-                var json = File.ReadAllText(filePath);
+                var json = File.ReadAllText(_dataFolderPath);
                 var customerData = JsonConvert.DeserializeObject<Data>(json);
+                if (customerData == null)
+                {
+                    return;
+                }
                 Customers.Clear();
                 foreach (var customer in customerData.Customers)
                 {
@@ -104,7 +105,11 @@ namespace DrugStore.ViewModel
             }
             else
             {
-                MessageBox.Show("Customer data file does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                using (FileStream fs = File.Create(_dataFolderPath))
+                {
+                    // Khởi tạo dữ liệu mặc định cho file nếu cần
+                }
+
                 return;
             }
         }

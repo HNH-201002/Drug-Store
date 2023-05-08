@@ -29,8 +29,16 @@ namespace DrugStore.Menu_Elements.Finance
         {
             InitializeComponent();
             _settingUserControl = new SettingUserControl();
-            string filePath = _settingUserControl.GetFileAddress(nameFile);
+            if (!Directory.Exists(_settingUserControl.GetFileAddress()))
+            {
+                return;
+            }
+            string filePath = System.IO.Path.Combine(_settingUserControl.GetFileAddress(),nameFile);
             // Deserialize the JSON data into an object.
+            if (!File.Exists(filePath))
+            {
+                return;
+            }
             string json = File.ReadAllText(filePath);
             var data = JsonConvert.DeserializeObject<Data>(json);
             CmbSelect.SelectedIndex = 0;
@@ -68,7 +76,8 @@ namespace DrugStore.Menu_Elements.Finance
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _settingUserControl = new SettingUserControl();
-            string filePath = _settingUserControl.GetFileAddress(nameFile);
+            string filePath = System.IO.Path.Combine(_settingUserControl.GetFileAddress(), nameFile);
+            if (!File.Exists(filePath)) { return; }
             // Deserialize the JSON data into an object.
             string json = File.ReadAllText(filePath);
             var data = JsonConvert.DeserializeObject<Data>(json);
